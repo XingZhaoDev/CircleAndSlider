@@ -11,7 +11,8 @@ import SwiftUI
 struct CircleAndSliderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            // ContentView()
+            RectangelView()
         }
     }
 }

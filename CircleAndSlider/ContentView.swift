@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct RectangelView: View {
+    @State private var progress = 0.0
+    var body: some View {
+        VStack {
+            ZStack {
+                Rectangle()
+                    .trim(from: 0, to: progress / 100.0)
+                    .stroke(style: StrokeStyle(lineWidth: 10))
+                    .frame(width: 300, height: 150)
+                    .animation(.easeInOut, value: progress)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Stepper("Fill Rectangle", value: $progress, in: 0...100, step: 10)
+        }
+    }
+}
+
 struct ContentView: View {
     @State private var insertAge: CGFloat = 0.0
     
@@ -25,9 +42,14 @@ struct ContentView: View {
                 .font(.title)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            Slider(value: $insertAge, in: 0...100, step: 1)
-                .padding()
+            HStack {
+                Slider(value: $insertAge, in: 0...100, step: 1)
+                    .padding()
+                    .font(.title2)
+            }
+            .padding()
         }
+        .padding()
         
     }
 }
